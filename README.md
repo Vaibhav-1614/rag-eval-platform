@@ -47,14 +47,14 @@ embedding models, so they are listed once per chunk size).
 
 ```mermaid
 flowchart LR
-    A[SEC EDGAR API] -->|latest 10-K| B[Parser<br/>BeautifulSoup / PyMuPDF]
-    B -->|clean text| C[Chunker<br/>256 / 512 / 1024 tokens]
-    C --> D[(ChromaDB<br/>MiniLM, BGE)]
-    C --> E[(BM25 index)]
-    D --> F{Retriever<br/>dense / sparse / hybrid RRF}
+    A["SEC EDGAR API"] -->|"latest 10-K"| B["Parser<br/>BeautifulSoup / PyMuPDF"]
+    B -->|"clean text"| C["Chunker<br/>256 / 512 / 1024 tokens"]
+    C --> D[("ChromaDB<br/>MiniLM, BGE")]
+    C --> E[("BM25 index")]
+    D --> F{"Retriever<br/>dense / sparse / hybrid RRF"}
     E --> F
-    G[Test set<br/>50 Q&A] --> H[Evaluator<br/>Hit@5, MRR, nDCG, precision, recall]
-    F --> H --> I[(SQLite results)] --> J[Streamlit dashboard]
+    G["Test set<br/>50 questions"] --> H["Evaluator<br/>Hit@5, MRR, nDCG, precision, recall"]
+    F --> H --> I[("SQLite results")] --> J["Streamlit dashboard"]
 ```
 
 | Stage | Details |
