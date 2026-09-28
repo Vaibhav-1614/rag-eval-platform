@@ -1,0 +1,21 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.streamlit/secrets.toml
+
+# Raw 10-K HTML is re-downloadable (python -m ingestion.edgar_fetcher); keep only metadata
+data/raw/*/*
+!data/raw/*/filing_meta.json
+
+# Heavy local indexes are rebuilt from data/index/ artifacts on first use
+models/chroma/
+models/cache/
+models/*.pkl
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store

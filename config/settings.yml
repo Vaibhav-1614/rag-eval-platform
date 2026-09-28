@@ -1,0 +1,57 @@
+companies:
+  - AAPL
+  - MSFT
+  - GOOGL
+  - AMZN
+  - META
+  - NVDA
+  - TSLA
+  - JPM
+  - JNJ
+  - XOM
+
+company_names:
+  AAPL: Apple
+  MSFT: Microsoft
+  GOOGL: Alphabet
+  AMZN: Amazon
+  META: Meta Platforms
+  NVDA: NVIDIA
+  TSLA: Tesla
+  JPM: JPMorgan Chase
+  JNJ: Johnson & Johnson
+  XOM: Exxon Mobil
+
+chunk_sizes: [256, 512, 1024]
+
+retrieval_strategies:
+  - dense
+  - sparse
+  - hybrid
+
+# Benchmark uses first two for 18 configs; e5-small available for extension
+embedding_models:
+  - sentence-transformers
+  - bge
+  - e5-small
+
+free_llm:
+  provider: gemini
+  model: gemini-2.5-flash
+
+sec:
+  # Override via SEC_USER_AGENT in .env (required by SEC)
+  user_agent: "RAG-Eval-Platform contact@example.com"
+  rate_limit_per_sec: 10
+  request_timeout_sec: 60
+  max_retries: 5
+
+paths:
+  raw_dir: data/raw
+  parsed_dir: data/parsed
+  testset_path: data/testset.json
+  results_db: data/results.db
+  chroma_dir: models/chroma
+  bm25_dir: models
+  embedding_cache: models/cache
+  index_artifacts: data/index
