@@ -1,6 +1,6 @@
 # RAG Evaluation Platform — SEC 10-K
 
-**Live demo:** https://rag-eval-platform.streamlit.app
+**Live demo:** https://vaibhav-1614-rag-eval-platform-dashboardapp-k5zaiu.streamlit.app
 
 Benchmarks **dense** (ChromaDB), **sparse** (BM25) and **hybrid** (Reciprocal Rank Fusion) retrieval
 over the latest 10-K filings of 10 large-cap companies, across 3 chunk sizes and 2 free local

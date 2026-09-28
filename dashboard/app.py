@@ -118,7 +118,12 @@ def page_benchmark() -> None:
 
     best = df.loc[df["avg_score"].idxmax()]
     k = st.columns(5)
-    k[0].metric("Best config", best["config"].replace(" · ", " / "), help="Highest mean of all 5 metrics")
+    short = best["config"].split(" · ")
+    k[0].metric(
+        "Best config",
+        f"{short[2] if best['retrieval_strategy'] == 'sparse' else short[0]} {short[1]}",
+        help=f"{best['config']}: highest mean of all 5 metrics",
+    )
     k[1].metric("Hit Rate@5", f"{df['hit_rate'].max():.0%}", help=df.loc[df["hit_rate"].idxmax(), "config"])
     k[2].metric("MRR", f"{df['mrr'].max():.3f}", help=df.loc[df["mrr"].idxmax(), "config"])
     k[3].metric("nDCG@5", f"{df['ndcg'].max():.3f}", help=df.loc[df["ndcg"].idxmax(), "config"])
@@ -162,7 +167,11 @@ def page_benchmark() -> None:
             labels={"avg_score": "Mean of 5 retrieval metrics", "config": "", "retrieval_strategy": "Strategy"},
             hover_data={m: ":.3f" for m in METRICS},
         )
-        fig_l.update_layout(height=470, margin=dict(l=10, r=10, t=10, b=10), legend=dict(orientation="h", y=1.06))
+        fig_l.update_layout(
+            height=470,
+            margin=dict(l=10, r=10, t=40, b=10),
+            legend=dict(orientation="h", yanchor="bottom", y=1.01, x=0, title_text=""),
+        )
         st.plotly_chart(fig_l, width="stretch")
 
     c3, c4 = st.columns([1.25, 1])
