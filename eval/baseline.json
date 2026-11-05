@@ -1,0 +1,25 @@
+{
+  "retrieval": {
+    "n": 62,
+    "hit_at_5": 0.9032,
+    "mrr": 0.7836,
+    "ndcg_at_5": 0.8065,
+    "heldout_hit_at_5": 0.6667,
+    "p50_ms": 1.47,
+    "p95_ms": 21.94
+  },
+  "refusal": {
+    "accuracy": 0.9865,
+    "unanswerable_recall": 0.9167,
+    "precision": 1.0,
+    "false_refusals": [],
+    "missed_refusals": [
+      "unans-012"
+    ]
+  },
+  "meta": {
+    "retrieval_version": "v1",
+    "golden_items": 74,
+    "prompt_version": "v1"
+  }
+}
