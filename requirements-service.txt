@@ -1,0 +1,10 @@
+# Runtime deps for the FastAPI service with the frozen sparse (BM25) config.
+# Dense/hybrid configs additionally need requirements-dense.txt.
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30
+pydantic>=2.7,<3
+slowapi>=0.1.9
+httpx>=0.27
+numpy>=1.26
+PyYAML>=6.0.1
+rank-bm25>=0.2.2

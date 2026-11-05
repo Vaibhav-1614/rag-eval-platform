@@ -1,0 +1,15 @@
+# Frozen retrieval config v1 — picked from data/results.db (eval_version v2,
+# 50-question benchmark, 18 configs). See docs/design/retrieval-v1-decision.md.
+version: v1
+strategy: sparse            # BM25 (rank_bm25 Okapi, k1=1.5, b=0.75 defaults)
+chunk_size: 256             # tokens (approx.), 10% overlap
+embedding_model: null       # unused by sparse; hybrid alternative uses bge
+top_k: 5
+corpus:
+  description: "latest 10-K per company (fiscal 2025 for most; NVIDIA fiscal 2026)"
+  tickers: [AAPL, MSFT, GOOGL, AMZN, META, NVDA, TSLA, JPM, JNJ, XOM]
+benchmark:                  # numbers this config was frozen on
+  hit_at_5: 0.98
+  mrr: 0.846
+  ndcg_at_5: 0.870
+  avg_latency_ms: 6.4

@@ -1,0 +1,5 @@
+# Only for RETRIEVAL_CONFIG=configs/retrieval/v1-hybrid.yaml (query embeddings on CPU).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+sentence-transformers>=3.0.0
+joblib>=1.4.0
