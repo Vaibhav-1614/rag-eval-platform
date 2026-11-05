@@ -1,0 +1,59 @@
+name: Generation eval (LLM + judge)
+
+# Uses free-tier Groq/Gemini quota, so it only runs when prompts, generation code or
+# configs change, or by hand. Skips cleanly when the repo has no LLM secrets
+# (and on PRs from forks, which never receive secrets).
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "configs/**"
+      - "src/rag_service/generation.py"
+      - "src/rag_service/llm.py"
+      - "src/rag_service/judges.py"
+      - "eval/golden.jsonl"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Only the first N golden items (empty = all 74)"
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  generation-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      EVAL_SLEEP_S: "4"
+    steps:
+      - name: Check for LLM keys
+        id: keys
+        run: |
+          if [ -n "$GROQ_API_KEY$GEMINI_API_KEY" ]; then echo "present=true" >> "$GITHUB_OUTPUT";
+          else echo "present=false" >> "$GITHUB_OUTPUT"; echo "No GROQ_API_KEY/GEMINI_API_KEY secrets: skipping." >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/checkout@v4
+        if: steps.keys.outputs.present == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.keys.outputs.present == 'true'
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - if: steps.keys.outputs.present == 'true'
+        run: pip install -r requirements-dev.txt
+      - name: Generation eval (gated once eval/baseline.json has a generation section)
+        if: steps.keys.outputs.present == 'true'
+        run: python eval/run_eval.py --generation ${{ inputs.limit && format('--limit {0} --no-gate', inputs.limit) || '' }}
+      - name: Eval summary
+        if: always() && steps.keys.outputs.present == 'true'
+        run: test -f eval/reports/summary.md && cat eval/reports/summary.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.keys.outputs.present == 'true'
+        with:
+          name: generation-eval-report
+          path: eval/reports/
+          if-no-files-found: ignore

@@ -19,3 +19,7 @@ models/*.pkl
 .mypy_cache/
 .ruff_cache/
 .DS_Store
+
+# Eval run outputs (CI uploads them as artifacts)
+eval/reports/
+data/feedback.db

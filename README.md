@@ -7,6 +7,8 @@ over the latest 10-K filings of 10 large-cap companies, across 3 chunk sizes and
 embedding models: **18 configurations**, scored with retrieval-first metrics stored in SQLite and
 explored in a 3-page Streamlit dashboard.
 
+The winning config is frozen and served by a **production FastAPI service**. The service returns cited answers, refuses out-of-scope questions, runs Groq → Gemini → extractive fallbacks, and has rate limits, tracing, a 74-question golden-set eval gated in CI, and Docker deploys to Hugging Face Spaces, all on free tiers. See **[docs/production.md](docs/production.md)**.
+
 ## Results
 
 50 questions × 10 filings, top-5 retrieval, local CPU (18 configs; BM25 rows are identical across
@@ -129,6 +131,14 @@ evaluation/    testset_generator.py, retrieval_metrics.py, ragas_runner.py, resu
 benchmark/     run_all.py — resumable 18-config sweep
 dashboard/     app.py — Streamlit (Benchmark Results, Live Query, Dataset Explorer)
 scripts/       build_indexes.py, seed_demo_data.py (synthetic rows for UI dev only)
+
+src/rag_service/   production API: retriever, guardrails, generation, llm, judges, tracing, api
+configs/retrieval/ frozen retrieval configs (v1 = BM25 @256; v1-hybrid alternative)
+prompts/           versioned answer + judge prompts
+eval/              golden.jsonl, run_eval.py, baseline.json, judge calibration
+tests/             pytest (unit + API)
+deploy/            Hugging Face Space deploy + smoke test
+Dockerfile, docker-compose.yml, .github/workflows/ (PR gate, generation eval, deploys)
 ```
 
 ## License

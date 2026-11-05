@@ -1,0 +1,37 @@
+name: Deploy to Cloud Run (optional, manual)
+
+# NOT the default: Cloud Run needs a GCP project with a billing account (a card),
+# even though light traffic fits in the always-free tier. Kept so the service can
+# move there without code changes. Manual trigger only.
+# Setup: Workload Identity Federation for this repo, then set repo variables
+# GCP_PROJECT, GCP_REGION, GCP_WIF_PROVIDER, GCP_SERVICE_ACCOUNT and create Secret
+# Manager secrets groq-api-key / gemini-api-key.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  gate:
+    uses: ./.github/workflows/pr.yml
+
+  deploy:
+    needs: gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Build and deploy from source
+        run: |
+          gcloud run deploy rag-10k-api \
+            --project "${{ vars.GCP_PROJECT }}" --region "${{ vars.GCP_REGION }}" \
+            --source . --port 7860 --cpu 1 --memory 1Gi \
+            --min-instances 0 --max-instances 2 --concurrency 20 \
+            --allow-unauthenticated \
+            --set-secrets GROQ_API_KEY=groq-api-key:latest,GEMINI_API_KEY=gemini-api-key:latest

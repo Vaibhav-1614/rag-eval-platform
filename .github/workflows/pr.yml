@@ -1,0 +1,56 @@
+name: PR checks
+
+on:
+  pull_request:
+  workflow_call:   # reused by deploy.yml as the pre-deploy gate
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: ruff check src eval tests deploy
+      - name: Unit + API tests
+        run: pytest
+      - name: Golden set is in sync with the filings
+        run: python eval/build_golden.py --check
+      - name: Retrieval + refusal eval (gated against eval/baseline.json)
+        run: python eval/run_eval.py
+      - name: Eval summary
+        if: always()
+        run: test -f eval/reports/summary.md && cat eval/reports/summary.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report
+          path: eval/reports/
+          if-no-files-found: ignore
+
+  docker-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t rag-service:ci .
+      - name: Container answers a query
+        run: |
+          docker run -d --name api -p 8000:7860 rag-service:ci
+          pip install httpx
+          python deploy/smoke_test.py http://localhost:8000 120

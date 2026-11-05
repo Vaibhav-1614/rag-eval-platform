@@ -1,0 +1,22 @@
+# Local run: docker compose up --build   ->  http://localhost:8000/docs
+# Keys are optional; without them answers are extractive (no LLM).
+services:
+  api:
+    build:
+      context: .
+      args:
+        WITH_DENSE: "${WITH_DENSE:-0}"
+    ports:
+      - "8000:7860"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      RETRIEVAL_CONFIG: "${RETRIEVAL_CONFIG:-/app/configs/retrieval/v1.yaml}"
+      FEEDBACK_DB: /data/feedback.db
+    volumes:
+      - feedback:/data
+    restart: unless-stopped
+
+volumes:
+  feedback:

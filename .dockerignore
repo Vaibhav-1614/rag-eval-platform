@@ -1,0 +1,16 @@
+.git
+.github
+**/__pycache__
+**/*.pyc
+.venv
+venv
+.env
+models/
+data/raw/
+data/parsed/
+data/results.db
+data/feedback.db
+eval/reports/
+dashboard/
+docs/
+tests/
