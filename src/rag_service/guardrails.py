@@ -24,11 +24,12 @@ MIN_COVERAGE = 0.3  # share of question terms (stemmed) found in the retrieved p
 
 _YEAR = re.compile(r"\b(19[5-9]\d|20\d\d)\b")
 _MARKET = re.compile(
-    r"\b(stock|share) price\b|\btrading at\b|\bmarket cap(italization)? (today|now)\b"
+    r"\b(stock|share) price\b|\btrading at\b|\bmarket cap(italization)?\b|\b(good|bad) (buy|investment)\b"
     r"|\b(today|right now|currently trading|this week)\b",
     re.I,
 )
 _FORECAST = re.compile(r"\bwill\b.*\b(be|pay|deliver|earn|report|reach)\b|\bforecast\b|\bpredict", re.I)
+_NEXT_PERIOD = re.compile(r"\bnext (fiscal )?(year|quarter)\b|\bguidance for\b", re.I)
 _QUARTER = re.compile(r"\b(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter\b|\bQ[1-4]\b", re.I)
 _FINANCIAL = re.compile(r"\b(revenue|revenues|sales|income|earnings|profit|margin|eps|cash flow|dividend)s?\b", re.I)
 _CALL = re.compile(r"\bearnings call\b|\bpress release\b|\binterview\b|\btweet", re.I)
@@ -73,7 +74,11 @@ def clean_question(q: str, max_chars: int) -> str:
     return q
 
 
-def scope_check(question: str, passages_text: list[str], detected: list[str]) -> ScopeDecision:
+def scope_check(
+    question: str, passages_text: list[str], detected: list[str], *, has_facts: bool = False
+) -> ScopeDecision:
+    """`has_facts`: the facts table already holds an exact figure for this question, so
+    only the rules about what a 10-K can contain at all still apply."""
     ctx = " ".join(passages_text)
     ctx_stems = stems(token_set(ctx))
     q_terms = stems({t for t in token_set(question) if t not in _QWORDS and t not in _ALIAS_WORDS})
@@ -89,12 +94,16 @@ def scope_check(question: str, passages_text: list[str], detected: list[str]) ->
     # 10-Ks are annual; quarterly figures for periods after the filings can't be there.
     if _QUARTER.search(question) and any(y >= LATEST_FILING_YEAR for y in years):
         return ScopeDecision(False, "future_period", coverage)
+    if has_facts:
+        return ScopeDecision(True, "facts", coverage)
     if years and not all(str(y) in ctx for y in years):
         return ScopeDecision(False, "period_not_in_context", coverage)
     # Financial statements cover the last 3 fiscal years (5 at most in some tables).
     if _FINANCIAL.search(question) and any(y < LATEST_FILING_YEAR - 5 for y in years):
         return ScopeDecision(False, "period_not_in_corpus", coverage)
-    if _FORECAST.search(question) and not detected:
+    # Forecasts: always for an explicit "next year/quarter"; for other "will ..." questions
+    # only when no company is named (a 10-K does state some plans, e.g. expected capex).
+    if _NEXT_PERIOD.search(question) or (_FORECAST.search(question) and not detected):
         return ScopeDecision(False, "forecast", coverage)
     if not detected:
         # A capitalised name that never appears in what we retrieved is most likely a

@@ -1,4 +1,5 @@
-# Only for RETRIEVAL_CONFIG=configs/retrieval/v1-hybrid.yaml (query embeddings on CPU).
+# Only for the legacy v1 dense/hybrid configs (configs/retrieval/v1-hybrid.yaml), which
+# embed queries with sentence-transformers. The v2 configs do not need this.
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch>=2.2
 sentence-transformers>=3.0.0

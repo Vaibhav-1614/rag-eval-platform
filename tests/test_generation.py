@@ -62,3 +62,50 @@ def test_all_providers_fail_falls_back_to_extractive(cfg, monkeypatch):
     monkeypatch.setattr(generation, "gemini_generate", boom)
     g = generation.generate("Tesla employee headcount?", PASSAGES, cfg, _settings(monkeypatch, "g", "m"), REFUSAL)
     assert g.mode == "extractive" and len(g.errors) == 3
+
+
+def test_verify_drops_uncited_and_unsupported_sentences():
+    answer = ("Tesla had 134,785 employees worldwide [1]. It is headquartered in Austin, Texas [2]. "
+              "Revenue was $99,999 million [1]. Tesla is the best carmaker.")
+    kept, report = generation.verify_answer(answer, PASSAGES)
+    assert kept == "Tesla had 134,785 employees worldwide [1]. It is headquartered in Austin, Texas [2]."
+    reasons = [d["reason"] for d in report["dropped"]]
+    assert report["sentences"] == 4 and len(reasons) == 2
+    assert reasons[0].startswith("numbers not in cited passages") and reasons[1] == "no valid citation"
+
+
+def test_verify_accepts_unit_restatements():
+    p = [Passage("X_fact_revenue", "AAPL", "Total revenue: fiscal 2025: $416,161 million.", 1.0, 1, kind="fact")]
+    for ok in ("Revenue was $416.16 billion [1].", "Revenue was about $416.2 billion in fiscal 2025 [1].", "Revenue was $416,161 million [1]."):
+        assert generation.verify_answer(ok, p)[0] == ok
+    assert generation.verify_answer("Revenue was $420 billion [1].", p)[0] == ""
+
+
+def test_unverifiable_llm_answer_falls_back(cfg, monkeypatch):
+    monkeypatch.setattr(
+        generation, "groq_chat", lambda p, **kw: LLMResult("Tesla employs 500,000 people.", "groq", kw["model"], 1.0)
+    )
+    g = generation.generate("Tesla employee headcount?", PASSAGES, cfg, _settings(monkeypatch, "g"), REFUSAL)
+    assert g.mode == "extractive" and "134,785" in g.answer
+    assert g.verification["dropped"] and g.provider == "groq"
+
+
+def test_llm_gate_counts_every_provider_call(cfg, monkeypatch):
+    def boom(prompt, **kw):
+        raise LLMError("down")
+
+    monkeypatch.setattr(generation, "groq_chat", boom)
+    monkeypatch.setattr(generation, "gemini_generate", boom)
+    calls = []
+    generation.generate("Tesla employee headcount?", PASSAGES, cfg, _settings(monkeypatch, "g", "m"), REFUSAL,
+                        llm_gate=lambda: calls.append(1) or True)
+    assert len(calls) == 3
+    budget = iter([True, False])
+    g = generation.generate("Tesla employee headcount?", PASSAGES, cfg, _settings(monkeypatch, "g", "m"), REFUSAL,
+                            llm_gate=lambda: next(budget))
+    assert g.mode == "extractive" and "daily LLM cap reached" in g.errors
+
+
+def test_direct_answer_used_without_llm(cfg, monkeypatch):
+    g = generation.generate("q?", PASSAGES, cfg, _settings(monkeypatch), REFUSAL, direct_answer="Exact figure [1].")
+    assert g.mode == "extractive" and g.answer == "Exact figure [1]." and g.citations == [1]

@@ -1,5 +1,5 @@
-# Runtime deps for the FastAPI service with the frozen sparse (BM25) config.
-# Dense/hybrid configs additionally need requirements-dense.txt.
+# Runtime deps for the FastAPI service (production config: configs/retrieval/v2.yaml).
+# No torch: embeddings and the re-ranker run on onnxruntime through fastembed.
 fastapi>=0.115,<1
 uvicorn[standard]>=0.30
 pydantic>=2.7,<3
@@ -7,4 +7,7 @@ slowapi>=0.1.9
 httpx>=0.27
 numpy>=1.26
 PyYAML>=6.0.1
-rank-bm25>=0.2.2
+rank-bm25>=0.2.2          # v1 index only
+snowballstemmer>=2.2      # stemming for the v2 BM25 index
+fastembed>=0.4            # bge-small embeddings + cross-encoder re-ranker (ONNX)
+psycopg[binary]>=3.1      # only used when DATABASE_URL is set

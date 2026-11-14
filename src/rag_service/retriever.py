@@ -90,6 +90,11 @@ class Passage:
     text: str
     score: float
     rank: int
+    kind: str = "text"            # "text" | "table" | "fact"
+    section: str | None = None     # e.g. "Item 7. Management's Discussion and Analysis"
+    context: str | None = None     # "<company> 10-K, fiscal <year> | <item> | <heading>"
+    source_url: str | None = None  # the filing on sec.gov
+    fiscal_year: int | None = None
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -98,10 +103,16 @@ class Passage:
             "text": self.text,
             "score": round(self.score, 6),
             "rank": self.rank,
+            "kind": self.kind,
+            "section": self.section,
+            "source_url": self.source_url,
+            "fiscal_year": self.fiscal_year,
         }
 
 
 class Retriever:
+    """v1 index: fixed-size chunks from data/index/, BM25 from retrieval/sparse.py."""
+
     def __init__(self, cfg: RetrievalConfig) -> None:
         self.cfg = cfg
         self._lock = threading.Lock()
@@ -211,3 +222,151 @@ class Retriever:
             for i, (c, t, x, s) in enumerate(rows, start=1)
         ]
         return passages, scope or ["ALL"]
+
+
+_CROSS_COMPANY = re.compile(
+    r"\b(which|what) (compan(y|ies)|of (them|these|the (ten|10|companies))|firm|one)\b"
+    r"|\b(across|among|between|of) (all |the |these )*(ten |10 )?(compan(y|ies)|firms)\b"
+    r"|\beach company\b|\ball (ten|10) companies\b",
+    re.I,
+)
+
+
+def is_cross_company(question: str) -> bool:
+    return bool(_CROSS_COMPANY.search(question))
+
+
+class StructuredRetriever:
+    """
+    v2 index: section/table-aware chunks (data/index/v2) searched with stemmed BM25 plus
+    query expansion, optional dense embeddings (ONNX bge-small, fused with RRF) and an
+    optional cross-encoder re-ranker over the fused candidates.
+    """
+
+    def __init__(self, cfg: RetrievalConfig) -> None:
+        from rag_service.textproc import QueryExpander
+
+        self.cfg = cfg
+        self._dir = ROOT / "data" / "index" / "v2"
+        self._expander = QueryExpander(ROOT / cfg.query_expansion if cfg.query_expansion else None)
+        self._chunks: list[dict[str, Any]] = []
+        self._ticker_of: np.ndarray | None = None
+        self._bm25 = None
+        self._emb: np.ndarray | None = None
+        self._embedder = None
+        self._reranker = None
+        self._lock = threading.Lock()
+        self._ready = False
+
+    # ---------- loading ----------
+    def warm(self) -> None:
+        import gzip
+        import json
+
+        from rag_service.textproc import BM25, tokenize
+
+        with self._lock:
+            if self._ready:
+                return
+            chunks: list[dict[str, Any]] = []
+            embs = []
+            for t in self.cfg.tickers:
+                with gzip.open(self._dir / "chunks" / f"{t}.json.gz", "rb") as f:
+                    part = json.loads(f.read().decode("utf-8"))
+                chunks += part
+                if self.cfg.strategy != "sparse":
+                    e = np.load(self._dir / "embeddings" / f"{t}_bge.npy").astype(np.float32)
+                    if len(e) != len(part):
+                        raise FileNotFoundError(f"v2 embeddings misaligned for {t}; rerun scripts/build_index_v2.py")
+                    embs.append(e)
+            self._chunks = chunks
+            self._ticker_of = np.array([c["ticker"] for c in chunks])
+            self._bm25 = BM25([tokenize(f"{c['context']}\n{c['text']}") for c in chunks])
+            if embs:
+                self._emb = np.vstack(embs)
+                from fastembed import TextEmbedding
+
+                self._embedder = TextEmbedding(str(self.cfg.embedding_model))
+            if self.cfg.rerank_model:
+                from fastembed.rerank.cross_encoder import TextCrossEncoder
+
+                self._reranker = TextCrossEncoder(self.cfg.rerank_model)
+            self._ready = True
+
+    @property
+    def ready(self) -> bool:
+        return self._ready
+
+    # ---------- search ----------
+    def _mask(self, ticker: str) -> np.ndarray | None:
+        return None if ticker == "ALL" else (self._ticker_of == ticker)
+
+    def _candidates(self, question: str, ticker: str, n: int) -> list[tuple[int, float]]:
+        from rag_service.textproc import tokenize
+
+        mask = self._mask(ticker)
+        lexical = self._bm25.top(tokenize(self._expander.expand(question)), n, mask)
+        if self.cfg.strategy == "sparse":
+            return lexical
+        qv = np.asarray(next(iter(self._embedder.query_embed(question))), dtype=np.float32)
+        sims = self._emb @ qv
+        if mask is not None:
+            sims = np.where(mask, sims, -1.0)
+        top = np.argsort(-sims)[:n]
+        dense = [(int(i), float(sims[i])) for i in top]
+        if self.cfg.strategy == "dense":
+            return dense
+        fused: dict[int, float] = {}
+        for hits in (lexical, dense):
+            for r, (i, _) in enumerate(hits, start=1):
+                fused[i] = fused.get(i, 0.0) + 1.0 / (r + RRF_K)
+        return sorted(fused.items(), key=lambda x: -x[1])[:n]
+
+    def rerank_scores(self, question: str, texts: list[str]) -> list[float]:
+        """Cross-encoder relevance of each text to the question (higher = more relevant)."""
+        if not self._reranker or not texts:
+            return []
+        return [float(x) for x in self._reranker.rerank(question, texts)]
+
+    def _search_one(self, question: str, ticker: str, k: int) -> list[tuple[int, float]]:
+        cands = self._candidates(question, ticker, max(self.cfg.candidates, k))
+        if self._reranker and cands:
+            texts = [f"{self._chunks[i]['context']}\n{self._chunks[i]['text']}" for i, _ in cands]
+            scores = self.rerank_scores(question, texts)
+            cands = sorted(zip((i for i, _ in cands), scores, strict=True), key=lambda x: -x[1])
+        return cands[:k]
+
+    def search(
+        self, question: str, tickers: list[str] | None = None, top_k: int | None = None
+    ) -> tuple[list[Passage], list[str]]:
+        k = top_k or self.cfg.top_k
+        scope = [t for t in (tickers or []) if t in self.cfg.tickers]
+        if not scope and is_cross_company(question):
+            # "Which company ...": take the best 2 passages from every filing.
+            per = [self._search_one(question, t, 2) for t in self.cfg.tickers]
+            rows = [r for group in per for r in group]
+            rows.sort(key=lambda x: -x[1])
+            scope_out = ["ALL"]
+        elif not scope:
+            rows, scope_out = self._search_one(question, "ALL", k), ["ALL"]
+        elif len(scope) == 1:
+            rows, scope_out = self._search_one(question, scope[0], k), scope
+        else:
+            per = [self._search_one(question, t, k) for t in scope]
+            rows = [r for group in zip(*per, strict=False) for r in group][: max(k, 3 * len(scope))]
+            scope_out = scope
+        passages = []
+        for rank, (i, score) in enumerate(rows, start=1):
+            c = self._chunks[i]
+            passages.append(
+                Passage(
+                    chunk_id=c["chunk_id"], ticker=c["ticker"], text=c["text"], score=score, rank=rank,
+                    kind=c["kind"], section=c["section_label"], context=c["context"],
+                    source_url=c.get("source_url"), fiscal_year=c.get("fiscal_year"),
+                )
+            )
+        return passages, scope_out
+
+
+def make_retriever(cfg: RetrievalConfig):
+    return StructuredRetriever(cfg) if cfg.index == "v2" else Retriever(cfg)

@@ -1,0 +1,11 @@
+version: v2-bm25
+index: v2
+strategy: sparse
+chunk_size: 256
+embedding_model: null
+query_expansion: configs/query_expansion.yaml
+top_k: 5
+facts: true
+corpus:
+  description: "latest 10-K per company (fiscal 2025 for most; NVIDIA fiscal 2026)"
+  tickers: [AAPL, MSFT, GOOGL, AMZN, META, NVDA, TSLA, JPM, JNJ, XOM]
