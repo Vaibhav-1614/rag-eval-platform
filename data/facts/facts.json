@@ -1,0 +1,2253 @@
+{
+ "AAPL": {
+  "accession": "0000320193-25-000079",
+  "cik": "0000320193",
+  "company": "Apple Inc.",
+  "filed": "2025-10-31",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 10959000000,
+     "2024": 9447000000,
+     "2025": 12715000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2024": 29943000000,
+     "2025": 35934000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfGoodsAndServicesSold",
+    "unit": "USD",
+    "values": {
+     "2023": 214137000000,
+     "2024": 210352000000,
+     "2025": 220960000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareDeclared",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 0.94,
+     "2024": 0.98,
+     "2025": 1.02
+    }
+   },
+   "employees": {
+    "evidence": "As of September 27, 2025, the Company had approximately 166,000 full-time equivalent employees.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 166000
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 6.16,
+     "2024": 6.11,
+     "2025": 7.49
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 6.13,
+     "2024": 6.08,
+     "2025": 7.46
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2023": 62146000000,
+     "2024": 56950000000,
+     "2025": 73733000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 44.13,
+     "2024": 46.21,
+     "2025": 46.91
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "us-gaap:GrossProfit",
+    "unit": "USD",
+    "values": {
+     "2023": 169148000000,
+     "2024": 180683000000,
+     "2025": 195201000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 16741000000,
+     "2024": 29749000000,
+     "2025": 20719000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2024": 85750000000,
+     "2025": 78328000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 96995000000,
+     "2024": 93736000000,
+     "2025": 112010000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 25.31,
+     "2024": 23.97,
+     "2025": 26.92
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 110543000000,
+     "2024": 118254000000,
+     "2025": 111482000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 114301000000,
+     "2024": 123216000000,
+     "2025": 133050000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 29.82,
+     "2024": 31.51,
+     "2025": 31.97
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 29915000000,
+     "2024": 31370000000,
+     "2025": 34550000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "unit": "USD",
+    "values": {
+     "2023": 383285000000,
+     "2024": 391035000000,
+     "2025": 416161000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 77550000000,
+     "2024": 94949000000,
+     "2025": 90711000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 364980000000,
+     "2025": 359241000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 308030000000,
+     "2025": 285508000000
+    }
+   }
+  },
+  "period_end": "2025-09-27",
+  "ticker": "AAPL",
+  "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+ },
+ "AMZN": {
+  "accession": "0001018724-26-000004",
+  "cik": "0001018724",
+  "company": "Amazon.com, Inc.",
+  "filed": "2026-02-06",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+    "unit": "USD",
+    "values": {
+     "2023": 52729000000,
+     "2024": 82999000000,
+     "2025": 131819000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2024": 78779000000,
+     "2025": 86810000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfGoodsAndServicesSold",
+    "unit": "USD",
+    "values": {
+     "2023": 304739000000,
+     "2024": 326288000000,
+     "2025": 356414000000
+    }
+   },
+   "employees": {
+    "evidence": "As of December 31, 2025, we employed approximately 1,576,000 full-time and part-time employees.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 1576000
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 2.95,
+     "2024": 5.66,
+     "2025": 7.29
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 2.9,
+     "2024": 5.53,
+     "2025": 7.17
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2023": 201875000000,
+     "2024": 285970000000,
+     "2025": 411065000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 46.98,
+     "2024": 48.85,
+     "2025": 50.29
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "derived: revenue - cost of revenue",
+    "unit": "USD",
+    "values": {
+     "2023": 270046000000,
+     "2024": 311671000000,
+     "2025": 360510000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 7120000000,
+     "2024": 9265000000,
+     "2025": 19087000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2024": 52623000000,
+     "2025": 65648000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 30425000000,
+     "2024": 59248000000,
+     "2025": 77670000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 5.29,
+     "2024": 9.29,
+     "2025": 10.83
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 84946000000,
+     "2024": 115877000000,
+     "2025": 139514000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 36852000000,
+     "2024": 68593000000,
+     "2025": 79975000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 6.41,
+     "2024": 10.75,
+     "2025": 11.16
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "unit": "USD",
+    "values": {
+     "2023": 574785000000,
+     "2024": 637959000000,
+     "2025": 716924000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2023": 527854000000,
+     "2024": 624894000000,
+     "2025": 818042000000
+    }
+   }
+  },
+  "period_end": "2025-12-31",
+  "ticker": "AMZN",
+  "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+ },
+ "GOOGL": {
+  "accession": "0001652044-26-000018",
+  "cik": "0001652044",
+  "company": "Alphabet Inc.",
+  "filed": "2026-02-05",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 32251000000,
+     "2024": 52535000000,
+     "2025": 91447000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2024": 23466000000,
+     "2025": 30708000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfRevenue",
+    "unit": "USD",
+    "values": {
+     "2023": 133332000000,
+     "2024": 146306000000,
+     "2025": 162535000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareDeclared",
+    "unit": "USD/shares",
+    "values": {
+     "2024": 0.6,
+     "2025": 0.83
+    }
+   },
+   "employees": {
+    "evidence": "As of December 31, 2025, Alphabet had 190,820 employees.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 190820
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 5.84,
+     "2024": 8.13,
+     "2025": 10.91
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 5.8,
+     "2024": 8.04,
+     "2025": 10.81
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2023": 283379000000,
+     "2024": 325084000000,
+     "2025": 415265000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 56.63,
+     "2024": 58.2,
+     "2025": 59.65
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "derived: revenue - cost of revenue",
+    "unit": "USD",
+    "values": {
+     "2023": 174062000000,
+     "2024": 203712000000,
+     "2025": 240301000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 11922000000,
+     "2024": 19697000000,
+     "2025": 26656000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2024": 10883000000,
+     "2025": 46547000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 73795000000,
+     "2024": 100118000000,
+     "2025": 132170000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 24.01,
+     "2024": 28.6,
+     "2025": 32.81
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 101746000000,
+     "2024": 125299000000,
+     "2025": 164713000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 84293000000,
+     "2024": 112390000000,
+     "2025": 129039000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 27.42,
+     "2024": 32.11,
+     "2025": 32.03
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 45427000000,
+     "2024": 49326000000,
+     "2025": 61087000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:Revenues",
+    "unit": "USD",
+    "values": {
+     "2023": 307394000000,
+     "2024": 350018000000,
+     "2025": 402836000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 61504000000,
+     "2024": 62222000000,
+     "2025": 45709000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 450256000000,
+     "2025": 595281000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 125172000000,
+     "2025": 180016000000
+    }
+   }
+  },
+  "period_end": "2025-12-31",
+  "ticker": "GOOGL",
+  "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+ },
+ "JNJ": {
+  "accession": "0000200406-26-000016",
+  "cik": "0000200406",
+  "company": "Johnson & Johnson",
+  "filed": "2026-02-11",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 4543000000,
+     "2024": 4424000000,
+     "2025": 4832000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2024": 24105000000,
+     "2025": 19709000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfGoodsAndServicesSold",
+    "unit": "USD",
+    "values": {
+     "2023": 26553000000,
+     "2024": 27471000000,
+     "2025": 30256000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareCashPaid",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 4.7,
+     "2024": 4.91,
+     "2025": 5.14
+    }
+   },
+   "employees": {
+    "evidence": "Our approximately 138,200 employees are critical drivers of the Company\u2019s success.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 138200
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 13.88,
+     "2024": 5.84,
+     "2025": 11.13
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 13.72,
+     "2024": 5.79,
+     "2025": 11.03
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+    "unit": "USD",
+    "values": {
+     "2023": 68774000000,
+     "2024": 71490000000,
+     "2025": 81544000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 68.82,
+     "2024": 69.07,
+     "2025": 67.88
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "us-gaap:GrossProfit",
+    "unit": "USD",
+    "values": {
+     "2023": 58606000000,
+     "2024": 61350000000,
+     "2025": 63937000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 1736000000,
+     "2024": 2621000000,
+     "2025": 5777000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2024": 30651000000,
+     "2025": 39438000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 35153000000,
+     "2024": 14066000000,
+     "2025": 26804000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 41.28,
+     "2024": 15.84,
+     "2025": 28.46
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 22791000000,
+     "2024": 24266000000,
+     "2025": 24530000000
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 483000000,
+     "2024": 1841000000,
+     "2025": 109000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "unit": "USD",
+    "values": {
+     "2023": 85159000000,
+     "2024": 88821000000,
+     "2025": 94193000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 5054000000,
+     "2024": 2432000000,
+     "2025": 5953000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 180104000000,
+     "2025": 199210000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 108614000000,
+     "2025": 117666000000
+    }
+   }
+  },
+  "period_end": "2025-12-28",
+  "ticker": "JNJ",
+  "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm"
+ },
+ "JPM": {
+  "accession": "0001628280-26-008131",
+  "cik": "0000019617",
+  "company": "JPMorgan Chase & Co.",
+  "filed": "2026-02-13",
+  "fiscal_year": 2025,
+  "metrics": {
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndDueFromBanks",
+    "unit": "USD",
+    "values": {
+     "2024": 23372000000,
+     "2025": 21742000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareDeclared",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 4.1,
+     "2024": 4.8,
+     "2025": 5.8
+    }
+   },
+   "employees": {
+    "evidence": "As of December 31, 2025, JPMorganChase had 318,512 employees globally.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 318512
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 16.25,
+     "2024": 19.79,
+     "2025": 20.05
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 16.23,
+     "2024": 19.75,
+     "2025": 20.02
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2023": 327878000000,
+     "2024": 344758000000,
+     "2025": 362438000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 12060000000,
+     "2024": 16610000000,
+     "2025": 15547000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 49552000000,
+     "2024": 58471000000,
+     "2025": 57048000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 31.34,
+     "2024": 32.93,
+     "2025": 31.27
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 12974000000,
+     "2024": -42012000000,
+     "2025": -147782000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:Revenues",
+    "unit": "USD",
+    "values": {
+     "2023": 158104000000,
+     "2024": 177556000000,
+     "2025": 182447000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 9824000000,
+     "2024": 18830000000,
+     "2025": 31591000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2023": 3875393000000,
+     "2024": 4002814000000,
+     "2025": 4424900000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 3658056000000,
+     "2025": 4062462000000
+    }
+   }
+  },
+  "period_end": "2025-12-31",
+  "ticker": "JPM",
+  "url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm"
+ },
+ "META": {
+  "accession": "0001628280-26-003942",
+  "cik": "0001326801",
+  "company": "Meta Platforms, Inc.",
+  "filed": "2026-01-29",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 27045000000,
+     "2024": 37256000000,
+     "2025": 69691000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2023": 41862000000,
+     "2024": 43889000000,
+     "2025": 35873000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfRevenue",
+    "unit": "USD",
+    "values": {
+     "2023": 25959000000,
+     "2024": 30161000000,
+     "2025": 36175000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareDeclared",
+    "unit": "USD/shares",
+    "values": {
+     "2024": 2,
+     "2025": 2.1
+    }
+   },
+   "employees": {
+    "evidence": "Headcount was 78,865 as of December 31, 2025",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 78865
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 15.19,
+     "2024": 24.61,
+     "2025": 23.98
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 14.87,
+     "2024": 23.86,
+     "2025": 23.49
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2023": 153168000000,
+     "2024": 182637000000,
+     "2025": 217243000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 80.76,
+     "2024": 81.67,
+     "2025": 82.0
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "derived: revenue - cost of revenue",
+    "unit": "USD",
+    "values": {
+     "2023": 108943000000,
+     "2024": 134340000000,
+     "2025": 164791000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 8330000000,
+     "2024": 8303000000,
+     "2025": 25474000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2024": 28826000000,
+     "2025": 58744000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 39098000000,
+     "2024": 62360000000,
+     "2025": 60458000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 28.98,
+     "2024": 37.91,
+     "2025": 30.08
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 71113000000,
+     "2024": 91328000000,
+     "2025": 115800000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 46751000000,
+     "2024": 69380000000,
+     "2025": 83276000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 34.66,
+     "2024": 42.18,
+     "2025": 41.44
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 38483000000,
+     "2024": 43873000000,
+     "2025": 57372000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "unit": "USD",
+    "values": {
+     "2023": 134902000000,
+     "2024": 164501000000,
+     "2025": 200966000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 19774000000,
+     "2024": 30125000000,
+     "2025": 26248000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 276054000000,
+     "2025": 366021000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 93417000000,
+     "2025": 148778000000
+    }
+   }
+  },
+  "period_end": "2025-12-31",
+  "ticker": "META",
+  "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+ },
+ "MSFT": {
+  "accession": "0000950170-25-100235",
+  "cik": "0000789019",
+  "company": "Microsoft Corporation",
+  "filed": "2025-07-30",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 28107000000,
+     "2024": 44477000000,
+     "2025": 64551000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2024": 18315000000,
+     "2025": 30242000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfGoodsAndServicesSold",
+    "unit": "USD",
+    "values": {
+     "2023": 65863000000,
+     "2024": 74114000000,
+     "2025": 87831000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareDeclared",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 2.72,
+     "2024": 3,
+     "2025": 3.32
+    }
+   },
+   "employees": {
+    "evidence": "As of June 30, 2025, we employed approximately 228,000 people on a full-time basis",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 228000
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 9.72,
+     "2024": 11.86,
+     "2025": 13.7
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 9.68,
+     "2024": 11.8,
+     "2025": 13.64
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2023": 206223000000,
+     "2024": 268477000000,
+     "2025": 343479000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 68.92,
+     "2024": 69.76,
+     "2025": 68.82
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "us-gaap:GrossProfit",
+    "unit": "USD",
+    "values": {
+     "2023": 146052000000,
+     "2024": 171008000000,
+     "2025": 193893000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 16950000000,
+     "2024": 19651000000,
+     "2025": 21795000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2024": 42688000000,
+     "2025": 40152000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 72361000000,
+     "2024": 88136000000,
+     "2025": 101832000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 34.15,
+     "2024": 35.96,
+     "2025": 36.15
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 87582000000,
+     "2024": 118548000000,
+     "2025": 136162000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 88523000000,
+     "2024": 109433000000,
+     "2025": 128528000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 41.77,
+     "2024": 44.64,
+     "2025": 45.62
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 27195000000,
+     "2024": 29510000000,
+     "2025": 32488000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "unit": "USD",
+    "values": {
+     "2023": 211915000000,
+     "2024": 245122000000,
+     "2025": 281724000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 22245000000,
+     "2024": 17254000000,
+     "2025": 18420000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 512163000000,
+     "2025": 619003000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 243686000000,
+     "2025": 275524000000
+    }
+   }
+  },
+  "period_end": "2025-06-30",
+  "ticker": "MSFT",
+  "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+ },
+ "NVDA": {
+  "accession": "0001045810-26-000021",
+  "cik": "0001045810",
+  "company": "NVIDIA Corporation",
+  "filed": "2026-02-25",
+  "fiscal_year": 2026,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+    "unit": "USD",
+    "values": {
+     "2024": 1069000000,
+     "2025": 3236000000,
+     "2026": 6042000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2025": 8589000000,
+     "2026": 10605000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfRevenue",
+    "unit": "USD",
+    "values": {
+     "2024": 16621000000,
+     "2025": 32639000000,
+     "2026": 62475000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareDeclared",
+    "unit": "USD/shares",
+    "values": {
+     "2024": 0.016,
+     "2025": 0.034,
+     "2026": 0.04
+    }
+   },
+   "employees": {
+    "evidence": "As of the end of fiscal year 2026, we had approximately 42,000 employees in 38 countries",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2026": 42000
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2024": 1.21,
+     "2025": 2.97,
+     "2026": 4.93
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2024": 1.19,
+     "2025": 2.94,
+     "2026": 4.9
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2024": 42978000000,
+     "2025": 79327000000,
+     "2026": 157293000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2024": 72.72,
+     "2025": 74.99,
+     "2026": 71.07
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "us-gaap:GrossProfit",
+    "unit": "USD",
+    "values": {
+     "2024": 44301000000,
+     "2025": 97858000000,
+     "2026": 153463000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2024": 4058000000,
+     "2025": 11146000000,
+     "2026": 21383000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebtNoncurrent",
+    "unit": "USD",
+    "values": {
+     "2025": 8463000000,
+     "2026": 7469000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2024": 29760000000,
+     "2025": 72880000000,
+     "2026": 120067000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2024": 48.85,
+     "2025": 55.85,
+     "2026": 55.6
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2024": 28090000000,
+     "2025": 64089000000,
+     "2026": 102718000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2024": 32972000000,
+     "2025": 81453000000,
+     "2026": 130387000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2024": 54.12,
+     "2025": 62.42,
+     "2026": 60.38
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2024": 8675000000,
+     "2025": 12914000000,
+     "2026": 18497000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:Revenues",
+    "unit": "USD",
+    "values": {
+     "2024": 60922000000,
+     "2025": 130497000000,
+     "2026": 215938000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2024": 9533000000,
+     "2025": 33706000000,
+     "2026": 40086000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2025": 111601000000,
+     "2026": 206803000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2025": 32274000000,
+     "2026": 49510000000
+    }
+   }
+  },
+  "period_end": "2026-01-25",
+  "ticker": "NVDA",
+  "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+ },
+ "TSLA": {
+  "accession": "0001628280-26-003952",
+  "cik": "0001318605",
+  "company": "Tesla, Inc.",
+  "filed": "2026-01-29",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 8899000000,
+     "2024": 11342000000,
+     "2025": 8527000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2023": 16398000000,
+     "2024": 16139000000,
+     "2025": 16513000000
+    }
+   },
+   "cost_of_revenue": {
+    "kind": "flow",
+    "label": "Cost of revenue",
+    "tag": "us-gaap:CostOfRevenue",
+    "unit": "USD",
+    "values": {
+     "2023": 79113000000,
+     "2024": 80240000000,
+     "2025": 77733000000
+    }
+   },
+   "employees": {
+    "evidence": "As of December 31, 2025, our employee headcount worldwide was 134,785.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 134785
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 4.73,
+     "2024": 2.23,
+     "2025": 1.18
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 4.3,
+     "2024": 2.04,
+     "2025": 1.08
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2024": 72913000000,
+     "2025": 82137000000
+    }
+   },
+   "gross_margin": {
+    "kind": "flow",
+    "label": "Gross margin",
+    "tag": "derived: gross_profit / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 18.25,
+     "2024": 17.86,
+     "2025": 18.03
+    }
+   },
+   "gross_profit": {
+    "kind": "flow",
+    "label": "Gross profit",
+    "tag": "us-gaap:GrossProfit",
+    "unit": "USD",
+    "values": {
+     "2023": 17660000000,
+     "2024": 17450000000,
+     "2025": 17094000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": -5001000000,
+     "2024": 1837000000,
+     "2025": 1423000000
+    }
+   },
+   "long_term_debt": {
+    "kind": "instant",
+    "label": "Long-term debt",
+    "tag": "us-gaap:LongTermDebt",
+    "unit": "USD",
+    "values": {
+     "2024": 5535000000,
+     "2025": 6584000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 14997000000,
+     "2024": 7091000000,
+     "2025": 3794000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 15.5,
+     "2024": 7.26,
+     "2025": 4.0
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 13256000000,
+     "2024": 14923000000,
+     "2025": 14747000000
+    }
+   },
+   "operating_income": {
+    "kind": "flow",
+    "label": "Operating income",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 8891000000,
+     "2024": 7076000000,
+     "2025": 4355000000
+    }
+   },
+   "operating_margin": {
+    "kind": "flow",
+    "label": "Operating margin",
+    "tag": "derived: operating_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 9.19,
+     "2024": 7.24,
+     "2025": 4.59
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 3969000000,
+     "2024": 4540000000,
+     "2025": 6411000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "unit": "USD",
+    "values": {
+     "2023": 96773000000,
+     "2024": 97690000000,
+     "2025": 94827000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 122070000000,
+     "2025": 137806000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 48390000000,
+     "2025": 54941000000
+    }
+   }
+  },
+  "period_end": "2025-12-31",
+  "ticker": "TSLA",
+  "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
+ },
+ "XOM": {
+  "accession": "0000034088-26-000045",
+  "cik": "0000034088",
+  "company": "Exxon Mobil Corporation",
+  "filed": "2026-02-18",
+  "fiscal_year": 2025,
+  "metrics": {
+   "capex": {
+    "kind": "flow",
+    "label": "Capital expenditures (purchases of property and equipment)",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "unit": "USD",
+    "values": {
+     "2023": 21919000000,
+     "2024": 24306000000,
+     "2025": 28358000000
+    }
+   },
+   "cash": {
+    "kind": "instant",
+    "label": "Cash and cash equivalents",
+    "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+    "unit": "USD",
+    "values": {
+     "2024": 23029000000,
+     "2025": 10681000000
+    }
+   },
+   "dividends_per_share": {
+    "kind": "flow",
+    "label": "Dividends declared per share",
+    "tag": "us-gaap:CommonStockDividendsPerShareCashPaid",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 3.68,
+     "2024": 3.84,
+     "2025": 4
+    }
+   },
+   "employees": {
+    "evidence": "The number of regular employees was 58 thousand, 61 thousand, and 62 thousand at years ended 2025, 2024, and 2023, respectively.",
+    "kind": "instant",
+    "label": "Number of employees",
+    "tag": "filing text",
+    "unit": "employees",
+    "values": {
+     "2025": 58000
+    }
+   },
+   "eps_basic": {
+    "kind": "flow",
+    "label": "Basic earnings per share",
+    "tag": "us-gaap:EarningsPerShareBasic",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 8.89,
+     "2024": 7.84,
+     "2025": 6.7
+    }
+   },
+   "eps_diluted": {
+    "kind": "flow",
+    "label": "Diluted earnings per share",
+    "tag": "us-gaap:EarningsPerShareDiluted",
+    "unit": "USD/shares",
+    "values": {
+     "2023": 8.89,
+     "2024": 7.84,
+     "2025": 6.7
+    }
+   },
+   "equity": {
+    "kind": "instant",
+    "label": "Total stockholders' equity",
+    "tag": "us-gaap:StockholdersEquity",
+    "unit": "USD",
+    "values": {
+     "2024": 263705000000,
+     "2025": 259386000000
+    }
+   },
+   "income_tax": {
+    "kind": "flow",
+    "label": "Provision for income taxes",
+    "tag": "us-gaap:IncomeTaxExpenseBenefit",
+    "unit": "USD",
+    "values": {
+     "2023": 15429000000,
+     "2024": 13810000000,
+     "2025": 11504000000
+    }
+   },
+   "net_income": {
+    "kind": "flow",
+    "label": "Net income",
+    "tag": "us-gaap:NetIncomeLoss",
+    "unit": "USD",
+    "values": {
+     "2023": 36010000000,
+     "2024": 33680000000,
+     "2025": 28844000000
+    }
+   },
+   "net_margin": {
+    "kind": "flow",
+    "label": "Net profit margin",
+    "tag": "derived: net_income / revenue",
+    "unit": "percent",
+    "values": {
+     "2023": 10.45,
+     "2024": 9.63,
+     "2025": 8.68
+    }
+   },
+   "operating_cash_flow": {
+    "kind": "flow",
+    "label": "Net cash provided by operating activities",
+    "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+    "unit": "USD",
+    "values": {
+     "2023": 55369000000,
+     "2024": 55022000000,
+     "2025": 51970000000
+    }
+   },
+   "rd_expense": {
+    "kind": "flow",
+    "label": "Research and development expense",
+    "tag": "us-gaap:ResearchAndDevelopmentExpense",
+    "unit": "USD",
+    "values": {
+     "2023": 900000000,
+     "2024": 1000000000,
+     "2025": 1200000000
+    }
+   },
+   "revenue": {
+    "kind": "flow",
+    "label": "Total revenue",
+    "tag": "us-gaap:Revenues",
+    "unit": "USD",
+    "values": {
+     "2023": 344582000000,
+     "2024": 349585000000,
+     "2025": 332238000000
+    }
+   },
+   "share_repurchases": {
+    "kind": "flow",
+    "label": "Share repurchases",
+    "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+    "unit": "USD",
+    "values": {
+     "2023": 17748000000,
+     "2024": 19629000000,
+     "2025": 20273000000
+    }
+   },
+   "total_assets": {
+    "kind": "instant",
+    "label": "Total assets",
+    "tag": "us-gaap:Assets",
+    "unit": "USD",
+    "values": {
+     "2024": 453475000000,
+     "2025": 448980000000
+    }
+   },
+   "total_liabilities": {
+    "kind": "instant",
+    "label": "Total liabilities",
+    "tag": "us-gaap:Liabilities",
+    "unit": "USD",
+    "values": {
+     "2024": 182869000000,
+     "2025": 182354000000
+    }
+   }
+  },
+  "period_end": "2025-12-31",
+  "ticker": "XOM",
+  "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408826000045/xom-20251231.htm"
+ }
+}
