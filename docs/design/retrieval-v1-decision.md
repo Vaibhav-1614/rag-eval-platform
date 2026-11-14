@@ -1,6 +1,6 @@
 # Decision: frozen retrieval config `v1` = BM25 @ 256 tokens
 
-**Status:** accepted · **Config:** [`configs/retrieval/v1.yaml`](../../configs/retrieval/v1.yaml) · **Alternative kept:** [`v1-hybrid.yaml`](../../configs/retrieval/v1-hybrid.yaml)
+**Status:** superseded by [v2](retrieval-v2-decision.md) · **Config:** [`configs/retrieval/v1.yaml`](../../configs/retrieval/v1.yaml) · **Alternative kept:** [`v1-hybrid.yaml`](../../configs/retrieval/v1-hybrid.yaml)
 
 ## Context
 

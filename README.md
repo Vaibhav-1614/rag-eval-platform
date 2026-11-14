@@ -7,7 +7,15 @@ over the latest 10-K filings of 10 large-cap companies, across 3 chunk sizes and
 embedding models: **18 configurations**, scored with retrieval-first metrics stored in SQLite and
 explored in a 3-page Streamlit dashboard.
 
-The winning config is frozen and served by a **production FastAPI service**. The service returns cited answers, refuses out-of-scope questions, runs Groq → Gemini → extractive fallbacks, and has rate limits, tracing, a 74-question golden-set eval gated in CI, and Docker deploys to Hugging Face Spaces, all on free tiers. See **[docs/production.md](docs/production.md)**.
+The findings feed a **production FastAPI service** ([docs/production.md](docs/production.md)):
+
+- section- and table-aware chunks, stemmed BM25 with query expansion, and a cross-encoder re-ranker;
+- exact company figures from SEC XBRL data, used for totals, comparisons and cross-company rankings;
+- cited answers with every sentence and number verified against its source, and refusals for out-of-scope questions;
+- Groq → Gemini → no-LLM fallbacks, rate limits, API keys, tracing, and a 176-question golden set gated in CI;
+- CPU-only Docker image (no torch) deployed to Hugging Face Spaces, all on free tiers.
+
+On the golden set the service reaches Hit@5 0.99 and MRR 0.94, against 0.73 and 0.58 for the benchmark's best config served as-is ([decision record](docs/design/retrieval-v2-decision.md)).
 
 ## Results
 
@@ -132,8 +140,9 @@ benchmark/     run_all.py — resumable 18-config sweep
 dashboard/     app.py — Streamlit (Benchmark Results, Live Query, Dataset Explorer)
 scripts/       build_indexes.py, seed_demo_data.py (synthetic rows for UI dev only)
 
-src/rag_service/   production API: retriever, guardrails, generation, llm, judges, tracing, api
-configs/retrieval/ frozen retrieval configs (v1 = BM25 @256; v1-hybrid alternative)
+src/rag_service/   production API: retriever, facts, pipeline, generation, guardrails, api, store
+configs/retrieval/ retrieval configs (v2 = production; v2-bm25, v2-hybrid-rerank, v1 alternatives)
+data/index/v2/     section-aware chunks + embeddings; data/facts/ = XBRL figures
 prompts/           versioned answer + judge prompts
 eval/              golden.jsonl, run_eval.py, baseline.json, judge calibration
 tests/             pytest (unit + API)
