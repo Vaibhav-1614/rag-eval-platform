@@ -1,0 +1,38 @@
+# Query expansion for lexical (BM25) search: everyday wording -> the wording 10-K filings use.
+# Each rule: `match` is a regex on the question, `add` is appended to the BM25 query.
+# Keep rules general finance/10-K vocabulary; do not add rules to fix a single eval question.
+rules:
+  - {match: '\br\s?&\s?d\b|\br and d\b', add: 'research and development'}
+  - {match: '\b(workforce|headcount|staff|people (work|employed)|how many (people|workers)|employs?)\b', add: 'employees employed headcount full-time'}
+  - {match: '\b(hq|head office|headquartered|based in|home base)\b', add: 'headquarters headquartered principal executive offices'}
+  - {match: '\b(buy ?backs?|bought back)\b', add: 'repurchases repurchased share repurchase program'}
+  - {match: '\b(sales|turnover|top line)\b', add: 'revenue net sales revenues'}
+  - {match: '\brevenues?\b', add: 'net sales revenues'}
+  - {match: '\b(profit|bottom line|earnings|earned|made)\b', add: 'net income'}
+  - {match: '\b(eps|per share)\b', add: 'earnings per share diluted basic'}
+  - {match: '\b(capex|capital spending|capital expenditures?)\b', add: 'capital expenditures purchases of property and equipment'}
+  - {match: '\b(debt|borrowings?|owes?)\b', add: 'long-term debt notes borrowings'}
+  - {match: '\b(taxes|tax rate)\b', add: 'provision for income taxes effective tax rate'}
+  - {match: '\b(lawsuits?|sued|litigation|court cases?)\b', add: 'legal proceedings litigation claims'}
+  - {match: '\b(risks?|threats?|worr(y|ies)|concerns?|challenges?|exposed|exposure)\b', add: 'risk factors could adversely affect'}
+  - {match: '\b(competitors?|rivals?|competes?|competition)\b', add: 'competition competitors competitive compete'}
+  - {match: '\b(hack(s|ing|ed)?|cyber ?attacks?|data breach(es)?|cyber ?security)\b', add: 'cybersecurity security incidents breach'}
+  - {match: '\b(suppliers?|supply chain|manufactur\w+|outsourc\w+)\b', add: 'supply chain suppliers manufacturing outsourcing partners components'}
+  - {match: '\b(regulat\w+|antitrust|government rules?|compliance)\b', add: 'laws regulations regulatory government'}
+  - {match: '\b(dividends?|payout)\b', add: 'dividends declared per share'}
+  - {match: '\b(cash on hand|how much cash|cash position|liquidity)\b', add: 'cash and cash equivalents marketable securities liquidity'}
+  - {match: '\b(offices?|facilities|buildings?|real estate|data cent(er|re)s|factories|plants?)\b', add: 'properties facilities owned leased'}
+  - {match: '\b(segments?|divisions?|business units?|lines? of business)\b', add: 'reportable segments segment'}
+  - {match: '\b(acquisitions?|acquired|bought|purchased? (of )?(a |the )?compan\w+|mergers?)\b', add: 'acquisitions acquired business combinations'}
+  - {match: '\b(climate|emissions|environment\w*|sustainab\w+)\b', add: 'climate change environmental emissions'}
+  - {match: '\b(ai|artificial intelligence|machine learning)\b', add: 'artificial intelligence AI'}
+  - {match: '\b(ceo|chief executive|executives?|management team|leadership)\b', add: 'chief executive officer executive officers'}
+  - {match: '\b(auditors?|accounting firm)\b', add: 'independent registered public accounting firm'}
+  - {match: '\b(customers?|clients?|users?)\b', add: 'customers'}
+  - {match: '\b(seasonal\w*|holiday quarter)\b', add: 'seasonality seasonal'}
+  - {match: '\b(currency|exchange rates?|forex|fx)\b', add: 'foreign currency exchange rate'}
+  - {match: '\b(interest rates?)\b', add: 'interest rate risk'}
+  - {match: '\b(chief information security officer)\b', add: 'CISO'}
+  - {match: '\bciso\b', add: 'chief information security officer'}
+  - {match: '\b(cfo|chief financial officer)\b', add: 'chief financial officer CFO'}
+  - {match: '\b(city|town|located|location|address)\b', add: 'located headquarters'}
