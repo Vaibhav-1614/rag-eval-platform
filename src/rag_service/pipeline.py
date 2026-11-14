@@ -60,9 +60,14 @@ class Pipeline:
         """Everything before generation. Returns (passages, scope, detected, fact hits, mode, evidence)."""
         detected = [t.upper() for t in tickers] if tickers else detect_tickers(question)
         hits, mode = find_facts(question, detected) if self.cfg.facts else ([], "none")
-        text_passages, scope = self.retriever.search(question, detected, top_k)
-        # With a reranker the passage score is a calibrated-ish relevance logit.
-        evidence = text_passages[0].score if (text_passages and self.cfg.rerank_model) else None
+        if mode == "ranking" and self.cfg.index == "v2":
+            # The ranking table answers the question; skip re-ranking 10 filings' passages.
+            text_passages, scope = self.retriever.search(question, detected, top_k, rerank=False)
+            evidence = None
+        else:
+            text_passages, scope = self.retriever.search(question, detected, top_k)
+            # With a re-ranker the top passage score is a relevance logit we can threshold.
+            evidence = text_passages[0].score if (text_passages and self.cfg.rerank_model) else None
         facts = fact_passages(hits, mode) if hits else []
         passages = facts + text_passages
         for i, p in enumerate(passages, start=1):
@@ -73,7 +78,8 @@ class Pipeline:
         """Route, retrieve and decide answerability. No LLM call happens here."""
         t0 = time.perf_counter()
         passages, scope, detected, hits, mode, evidence = self.retrieve(question, tickers, top_k)
-        decision = scope_check(question, [f"{p.context or ''} {p.text}" for p in passages], detected, has_facts=bool(hits))
+        decision = scope_check(question, [f"{p.context or ''} {p.text}" for p in passages], detected,
+                               has_facts=bool(hits), has_evidence_score=evidence is not None)
         reason, answerable = decision.reason, decision.in_scope
         # Evidence-based abstention: nothing retrieved looks like an answer.
         if answerable and not hits and evidence is not None and self.cfg.min_evidence_score is not None:

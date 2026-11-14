@@ -257,6 +257,7 @@ class StructuredRetriever:
         self._reranker = None
         self._lock = threading.Lock()
         self._ready = False
+        self._rerank_on = True
 
     # ---------- loading ----------
     def warm(self) -> None:
@@ -328,22 +329,26 @@ class StructuredRetriever:
             return []
         return [float(x) for x in self._reranker.rerank(question, texts)]
 
-    def _search_one(self, question: str, ticker: str, k: int) -> list[tuple[int, float]]:
-        cands = self._candidates(question, ticker, max(self.cfg.candidates, k))
-        if self._reranker and cands:
+    def _search_one(self, question: str, ticker: str, k: int, n_cand: int | None = None) -> list[tuple[int, float]]:
+        cands = self._candidates(question, ticker, max(n_cand or self.cfg.candidates, k))
+        if self._reranker and cands and self._rerank_on:
             texts = [f"{self._chunks[i]['context']}\n{self._chunks[i]['text']}" for i, _ in cands]
             scores = self.rerank_scores(question, texts)
             cands = sorted(zip((i for i, _ in cands), scores, strict=True), key=lambda x: -x[1])
         return cands[:k]
 
     def search(
-        self, question: str, tickers: list[str] | None = None, top_k: int | None = None
+        self, question: str, tickers: list[str] | None = None, top_k: int | None = None, *, rerank: bool = True
     ) -> tuple[list[Passage], list[str]]:
+        """`rerank=False` skips the cross-encoder (used when the facts table already holds
+        the answer and the text passages are only supporting context)."""
+        self._rerank_on = rerank
         k = top_k or self.cfg.top_k
         scope = [t for t in (tickers or []) if t in self.cfg.tickers]
         if not scope and is_cross_company(question):
             # "Which company ...": take the best 2 passages from every filing.
-            per = [self._search_one(question, t, 2) for t in self.cfg.tickers]
+            # (6 candidates each keeps the re-ranker to 60 pairs instead of 200.)
+            per = [self._search_one(question, t, 2, n_cand=6) for t in self.cfg.tickers]
             rows = [r for group in per for r in group]
             rows.sort(key=lambda x: -x[1])
             scope_out = ["ALL"]

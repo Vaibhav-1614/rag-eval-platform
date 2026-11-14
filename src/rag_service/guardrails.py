@@ -75,7 +75,8 @@ def clean_question(q: str, max_chars: int) -> str:
 
 
 def scope_check(
-    question: str, passages_text: list[str], detected: list[str], *, has_facts: bool = False
+    question: str, passages_text: list[str], detected: list[str], *, has_facts: bool = False,
+    has_evidence_score: bool = False,
 ) -> ScopeDecision:
     """`has_facts`: the facts table already holds an exact figure for this question, so
     only the rules about what a 10-K can contain at all still apply."""
@@ -112,6 +113,8 @@ def scope_check(
         names = {m.group(1).lower() for m in _CAP_WORD.finditer(question)} - _ALIAS_WORDS
         if any(ctx.lower().count(n) < 2 for n in names):
             return ScopeDecision(False, "unknown_entity", coverage)
-    if coverage < MIN_COVERAGE:
+    # Word overlap is a crude stand-in for relevance; when the re-ranker provides an
+    # evidence score the pipeline thresholds that instead.
+    if coverage < MIN_COVERAGE and not has_evidence_score:
         return ScopeDecision(False, "low_coverage", coverage)
     return ScopeDecision(True, "ok", coverage)

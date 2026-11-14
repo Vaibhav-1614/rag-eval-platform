@@ -1,25 +1,68 @@
 {
   "retrieval": {
-    "n": 62,
-    "hit_at_5": 0.9032,
-    "mrr": 0.7836,
-    "ndcg_at_5": 0.8065,
-    "heldout_hit_at_5": 0.6667,
-    "p50_ms": 1.47,
-    "p95_ms": 21.94
+    "n": 148,
+    "hit_at_5": 0.9865,
+    "mrr": 0.9448,
+    "ndcg_at_5": 0.934,
+    "dev_hit_at_5": 0.981,
+    "test_hit_at_5": 1,
+    "test_mrr": 0.9593,
+    "p50_ms": 449.33,
+    "p95_ms": 1190.03
   },
   "refusal": {
-    "accuracy": 0.9865,
-    "unanswerable_recall": 0.9167,
-    "precision": 1.0,
+    "accuracy": 1.0,
+    "unanswerable_recall": 1.0,
+    "test_unanswerable_recall": 1,
+    "false_refusal_rate": 0.0,
     "false_refusals": [],
-    "missed_refusals": [
-      "unans-012"
-    ]
+    "missed_refusals": []
   },
   "meta": {
-    "retrieval_version": "v1",
-    "golden_items": 74,
-    "prompt_version": "v1"
+    "retrieval_version": "v2",
+    "golden_items": 176,
+    "split": "all",
+    "prompt_version": "v2"
+  },
+  "by_type": {
+    "comparison": {
+      "n": 8,
+      "hit_at_5": 1,
+      "mrr": 1.0,
+      "answer_accuracy": 1
+    },
+    "cross_company": {
+      "n": 6,
+      "hit_at_5": 1,
+      "mrr": 1.0,
+      "answer_accuracy": 1
+    },
+    "lookup": {
+      "n": 78,
+      "hit_at_5": 0.9744,
+      "mrr": 0.9081,
+      "answer_accuracy": 0.875
+    },
+    "numeric": {
+      "n": 38,
+      "hit_at_5": 1,
+      "mrr": 0.9868,
+      "answer_accuracy": 1
+    },
+    "thematic": {
+      "n": 18,
+      "hit_at_5": 1,
+      "mrr": 0.9722,
+      "answer_accuracy": null
+    }
+  },
+  "answers": {
+    "n_checked": 68,
+    "accuracy": 0.9706,
+    "test_accuracy": 1,
+    "wrong": [
+      "look-001",
+      "look-011"
+    ]
   }
 }
