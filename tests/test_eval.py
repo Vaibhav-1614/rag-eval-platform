@@ -5,7 +5,7 @@ from conftest import ROOT
 
 from eval.build_golden import build, chunk_has_evidence
 from eval.calibrate_judge import cohen_kappa
-from eval.run_eval import compare
+from eval.run_eval import answer_ok, compare
 from rag_service.judges import parse_verdict
 
 
@@ -16,11 +16,24 @@ def test_golden_file_matches_builder():
 
 def test_golden_shape():
     rows = build()
-    assert len(rows) >= 60
-    unans = [r for r in rows if not r["answerable"]]
-    assert len(unans) == 12
-    assert all(r["gold_chunk_ids"] for r in rows if r["answerable"])
+    assert len(rows) >= 170
     assert len({r["id"] for r in rows}) == len(rows)
+    by_type = {t: [r for r in rows if r["type"] == t] for t in {r["type"] for r in rows}}
+    assert set(by_type) == {"lookup", "numeric", "comparison", "cross_company", "thematic", "unanswerable"}
+    assert len(by_type["unanswerable"]) == 28
+    # every answerable item can be scored for retrieval
+    assert all(r["evidence_any"] or r["section_rule"] for r in rows if r["answerable"])
+    # the v1 questions stay in dev; every v2 type has a held-out half
+    assert all(r["split"] == "dev" for r in rows if r["source"] != "v2")
+    for t in ("numeric", "comparison", "cross_company", "thematic", "unanswerable"):
+        assert any(r["split"] == "test" for r in by_type[t]), t
+
+
+def test_answer_ok():
+    groups = [["416,161", "416.16 billion"], ["Apple"]]
+    assert answer_ok("Apple Inc.'s revenue was $416,161 million [1].", groups)
+    assert answer_ok("apple made $416.16 billion", groups)
+    assert not answer_ok("Apple made a lot of money", groups)
 
 
 def test_chunk_has_evidence_partial_overlap():
@@ -31,10 +44,14 @@ def test_chunk_has_evidence_partial_overlap():
 
 
 def test_compare_flags_regressions():
-    base = {"retrieval": {"hit_at_5": 0.9, "mrr": 0.8}, "refusal": {"accuracy": 0.95}}
-    assert compare({"retrieval": {"hit_at_5": 0.89, "mrr": 0.8}, "refusal": {"accuracy": 0.95}}, base) == []
-    fails = compare({"retrieval": {"hit_at_5": 0.85, "mrr": 0.8}, "refusal": {"accuracy": 0.95}}, base)
+    base = {"retrieval": {"hit_at_5": 0.9, "mrr": 0.8}, "refusal": {"accuracy": 0.95, "false_refusal_rate": 0.01}}
+    ok = {"retrieval": {"hit_at_5": 0.89, "mrr": 0.8}, "refusal": {"accuracy": 0.95, "false_refusal_rate": 0.02}}
+    assert compare(ok, base) == []
+    fails = compare({"retrieval": {"hit_at_5": 0.85, "mrr": 0.8}, "refusal": {"accuracy": 0.95, "false_refusal_rate": 0.01}}, base)
     assert len(fails) == 1 and fails[0].startswith("retrieval.hit_at_5")
+    # "lower is better" metrics fail when they rise past the tolerance
+    fails = compare({"retrieval": {"hit_at_5": 0.9, "mrr": 0.8}, "refusal": {"accuracy": 0.95, "false_refusal_rate": 0.08}}, base)
+    assert len(fails) == 1 and fails[0].startswith("refusal.false_refusal_rate")
 
 
 def test_parse_verdict():
