@@ -15,7 +15,10 @@ concurrency:
 jobs:
   test-and-eval:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    env:
+      FASTEMBED_CACHE_PATH: ${{ github.workspace }}/.model-cache
+      HF_HUB_DISABLE_XET: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,12 +28,19 @@ jobs:
           cache-dependency-path: requirements-dev.txt
       - run: pip install -r requirements-dev.txt
       - name: Lint
-        run: ruff check src eval tests deploy
+        run: ruff check src eval tests deploy scripts/build_facts.py scripts/build_index_v2.py scripts/fetch_models.py ingestion/structured_chunker.py
       - name: Unit + API tests
         run: pytest
-      - name: Golden set is in sync with the filings
+      - name: Golden set is in sync with the filings and the facts table
         run: python eval/build_golden.py --check
-      - name: Retrieval + refusal eval (gated against eval/baseline.json)
+      - name: Cache ONNX models (embeddings + re-ranker)
+        uses: actions/cache@v4
+        with:
+          path: .model-cache
+          key: fastembed-${{ hashFiles('configs/retrieval/v2.yaml') }}
+      - name: Fetch models for the production config
+        run: python scripts/fetch_models.py configs/retrieval/v2.yaml
+      - name: Retrieval, refusal and answer-check eval (gated against eval/baseline.json)
         run: python eval/run_eval.py
       - name: Eval summary
         if: always()
@@ -53,4 +63,4 @@ jobs:
         run: |
           docker run -d --name api -p 8000:7860 rag-service:ci
           pip install httpx
-          python deploy/smoke_test.py http://localhost:8000 120
+          python deploy/smoke_test.py http://localhost:8000 180

@@ -23,3 +23,5 @@ models/*.pkl
 # Eval run outputs (CI uploads them as artifacts)
 eval/reports/
 data/feedback.db
+
+.model-cache/

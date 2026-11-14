@@ -25,4 +25,8 @@ assert "134,785" in ok["answer"], ok["answer"]
 no = httpx.post(f"{base}/v1/query", json={"question": "What is Apple's stock price today?"}, timeout=60).json()
 assert no["mode"] == "refusal", no
 cfg = httpx.get(f"{base}/v1/config", timeout=10).json()
-print(f"smoke ok: mode={ok['mode']} provider={ok['provider']} retrieval={cfg['retrieval']['version']} tracing={cfg['tracing']}")
+theme = httpx.post(f"{base}/v1/query", json={"question": "What are the main risks Tesla faces from competition?"}, timeout=90).json()
+assert theme["mode"] in ("llm", "extractive"), theme
+assert any("Risk Factors" in (p.get("section") or "") for p in theme["passages"]), [p.get("section") for p in theme["passages"]]
+print(f"smoke ok: mode={ok['mode']} provider={ok['provider']} retrieval={cfg['retrieval']['version']} "
+      f"storage={cfg['storage']} tracing={cfg['tracing']}")

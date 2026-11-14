@@ -11,11 +11,12 @@ on:
       - "src/rag_service/generation.py"
       - "src/rag_service/llm.py"
       - "src/rag_service/judges.py"
+      - "src/rag_service/facts.py"
       - "eval/golden.jsonl"
   workflow_dispatch:
     inputs:
       limit:
-        description: "Only the first N golden items (empty = all 74)"
+        description: "Only the first N golden items (empty = all)"
         required: false
 
 permissions:
@@ -29,6 +30,8 @@ jobs:
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       EVAL_SLEEP_S: "4"
+      FASTEMBED_CACHE_PATH: ${{ github.workspace }}/.model-cache
+      HF_HUB_DISABLE_XET: "1"
     steps:
       - name: Check for LLM keys
         id: keys
@@ -45,6 +48,9 @@ jobs:
           cache-dependency-path: requirements-dev.txt
       - if: steps.keys.outputs.present == 'true'
         run: pip install -r requirements-dev.txt
+      - name: Fetch models for the production config
+        if: steps.keys.outputs.present == 'true'
+        run: python scripts/fetch_models.py configs/retrieval/v2.yaml
       - name: Generation eval (gated once eval/baseline.json has a generation section)
         if: steps.keys.outputs.present == 'true'
         run: python eval/run_eval.py --generation ${{ inputs.limit && format('--limit {0} --no-gate', inputs.limit) || '' }}

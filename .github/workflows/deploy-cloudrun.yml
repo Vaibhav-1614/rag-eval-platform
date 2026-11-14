@@ -31,7 +31,8 @@ jobs:
         run: |
           gcloud run deploy rag-10k-api \
             --project "${{ vars.GCP_PROJECT }}" --region "${{ vars.GCP_REGION }}" \
-            --source . --port 7860 --cpu 1 --memory 1Gi \
+            --source . --port 7860 --cpu 2 --memory 2Gi \
+            --set-env-vars TRUSTED_PROXY_HOPS=1 \
             --min-instances 0 --max-instances 2 --concurrency 20 \
             --allow-unauthenticated \
             --set-secrets GROQ_API_KEY=groq-api-key:latest,GEMINI_API_KEY=gemini-api-key:latest

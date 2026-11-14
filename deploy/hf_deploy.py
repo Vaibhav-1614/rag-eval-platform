@@ -16,13 +16,14 @@ from pathlib import Path
 from huggingface_hub import HfApi
 
 ROOT = Path(__file__).resolve().parents[1]
-SECRETS = ("GROQ_API_KEY", "GEMINI_API_KEY", "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY", "LANGFUSE_HOST")
+SECRETS = ("GROQ_API_KEY", "GEMINI_API_KEY", "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY", "LANGFUSE_HOST",
+           "DATABASE_URL", "API_KEYS")
 VARIABLES = ("GROQ_MODEL", "GROQ_FALLBACK_MODEL", "GEMINI_MODEL", "RATE_LIMIT", "DAILY_LLM_CAP", "RETRIEVAL_CONFIG")
 UPLOAD = [
     "Dockerfile",
     ".dockerignore",
     "requirements-service.txt",
-    "requirements-dense.txt",
+    "scripts/fetch_models.py",
     "platform_config.py",
     "config/**",
     "configs/**",
@@ -32,7 +33,8 @@ UPLOAD = [
     "evaluation/retrieval_metrics.py",
     "src/**",
     "data/index/chunks/**",
-    "data/index/embeddings/*_bge.npy",
+    "data/index/v2/**",
+    "data/facts/**",
 ]
 
 
@@ -48,6 +50,8 @@ def main() -> None:
         if os.environ.get(k, "").strip():
             api.add_space_secret(space, k, os.environ[k].strip())
             print(f"secret set: {k}")
+    # A Space sits behind one Hugging Face proxy that appends the caller's address.
+    api.add_space_variable(space, "TRUSTED_PROXY_HOPS", os.environ.get("TRUSTED_PROXY_HOPS", "1"))
     for k in VARIABLES:
         if os.environ.get(k, "").strip():
             api.add_space_variable(space, k, os.environ[k].strip())
