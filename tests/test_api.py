@@ -121,6 +121,8 @@ def test_api_key_required_when_configured(client, monkeypatch):
     q = {"question": "Where is Tesla headquartered?"}
     assert client.post("/v1/query", json=q).status_code == 401
     assert client.post("/v1/query", json=q, headers={"X-API-Key": "wrong"}).status_code == 401
+    # A non-ASCII key is just a wrong key, not a server error.
+    assert client.post("/v1/query", json=q, headers={"X-API-Key": "clé".encode("latin-1")}).status_code == 401
     assert client.post("/v1/query", json=q, headers={"X-API-Key": "secret-1"}).status_code == 200
     assert client.get("/healthz").status_code == 200  # health stays open
     assert api.rate_key(_Req(key="secret-1")).startswith("key:")

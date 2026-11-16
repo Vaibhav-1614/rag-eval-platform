@@ -152,7 +152,12 @@ def client_ip(request: Request) -> str:
 
 
 def _valid_key(key: str | None) -> bool:
-    return bool(key) and any(hmac.compare_digest(key, k) for k in settings.api_keys)
+    # Compare bytes: compare_digest raises TypeError on non-ASCII str, which turned a
+    # malformed X-API-Key header into a 500 instead of a 401.
+    if not key:
+        return False
+    supplied = key.encode("utf-8", "surrogatepass")
+    return any(hmac.compare_digest(supplied, k.encode("utf-8")) for k in settings.api_keys)
 
 
 def rate_key(request: Request) -> str:
