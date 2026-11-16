@@ -258,12 +258,17 @@ def _answer(question: str, hits: list[dict]) -> tuple[str, str]:
     )
 
 
+def _plain(text: str) -> str:
+    """Escape dollar signs: Streamlit renders `$...$` as LaTeX, which garbles 10-K amounts."""
+    return (text or "").replace("$", r"\$")
+
+
 def _render_hits(hits: list[dict], compact: bool = False) -> None:
     for i, h in enumerate(hits, 1):
         score = h.get("score", h.get("similarity"))
         title = f"#{i} · {h.get('chunk_id', '')} · score {score:.3f}" if score is not None else h.get("chunk_id", "")
         with st.expander(title, expanded=(i == 1 and not compact)):
-            st.write(h.get("text", "")[:1800])
+            st.write(_plain(h.get("text", "")[:1800]))
 
 
 def page_live() -> None:
@@ -305,7 +310,7 @@ def page_live() -> None:
         ans, how = _answer(q, hits)
 
     st.subheader("Answer")
-    st.info(ans or "No matching sentence found in the retrieved chunks.")
+    st.info(_plain(ans) or "No matching sentence found in the retrieved chunks.")
     st.caption(f"{how} · retrieval {latency:.0f} ms · cost $0.00 (local embeddings)")
 
     if compare:
@@ -324,7 +329,7 @@ def page_live() -> None:
                         q, ticker, int(row["chunk_size"]), str(row["embedding_model"]),
                         str(row["retrieval_strategy"]), top_k=5, settings=settings,
                     )
-                    st.info(_answer(q, hh)[0] or "—")
+                    st.info(_plain(_answer(q, hh)[0]) or "—")
                     _render_hits(hh, compact=True)
         return
 
