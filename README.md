@@ -103,6 +103,16 @@ flowchart LR
   compare the best and worst benchmark configs side by side.
 - **Dataset Explorer** — corpus stats per filing and the searchable 50-question test set.
 
+![Benchmark Results page](docs/screenshots/01_benchmark_results.png)
+
+| Live Query | Dataset Explorer |
+|---|---|
+| ![Live Query page](docs/screenshots/02_live_query.png) | ![Dataset Explorer page](docs/screenshots/03_dataset_explorer.png) |
+
+The production service's API (`/docs`):
+
+![FastAPI service endpoints](docs/screenshots/04_service_api.png)
+
 ## Run locally
 
 ```bash
